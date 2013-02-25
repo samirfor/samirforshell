@@ -101,7 +101,21 @@ int regexp_match(char *pattern, char *string) {
     regfree(&regex);
 }
 
-int main(int argc, char *argv[]) {
+/**
+ * Strip whitespace from the beginning and end of a string
+ * @param input string
+ */
+void trim(char * str) {
+    char * aux = str;
+    int l = strlen(aux);
+
+    while (isspace(aux[l - 1])) aux[--l] = 0;
+    while (* aux && isspace(* aux)) ++aux, --l;
+
+    memmove(str, aux, l + 1);
+}
+
+int main(int argc, char * argv[]) {
     printf("::: S@mirforShell :::\n\n");
     printf(">>> Criado por Samir <samirfor@gmail.com>\n");
     printf("Este programa esta sob a GNU General Public License v3 <http://www.gnu.org/licenses/>\n");
@@ -119,14 +133,13 @@ int main(int argc, char *argv[]) {
     do {
         printf("+%s em %s::%s$ ", usuario, maquina, caminho_atual);
         read_string(input);
+        trim(input);
 
-        //        if (strstr(input, "cd ")) {
         if (regexp_match("^cd ", input)) {
             // Manipula no caso do comando cd
             do_cd(input);
             caminho_atual = get_caminho_atual();
         } else if (!strcasecmp(input, "limpar")) {
-            // Manipula o comando limpar
             limpar_tela();
         } else {
             // Outros comandos, cria um subprocesso para executar

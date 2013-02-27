@@ -17,7 +17,7 @@
  * String module
  */
 
-char *read_string(char *str) {
+char * read_string(char *str) {
     __fpurge(stdin);
     *str = NON_EXIST;
     gets(str);
@@ -36,17 +36,6 @@ char * input_malloc() {
     }
     strcpy(input, "");
     return input;
-}
-
-int check_by_name(char *input) {
-    printf("Qual nome? ");
-    read_string(input);
-
-    if (strlen(input) < 2) {
-        printf("%s: Nao ha caracteres suficientes para a pesquisa.\n", __FILE__);
-        return FALSE;
-    }
-    return TRUE;
 }
 
 int be_sure(char *input) {

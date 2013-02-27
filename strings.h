@@ -12,11 +12,9 @@
  ************************************/
 
 /* Ler do teclado */
-extern char *read_string(char*);
+extern char * read_string(char*);
 /* Declara dinâmicamente um input */
 extern char * input_malloc();
-/* Validação do que foi digitado pelo usuário. */
-extern int check_by_name(char *);
 /* Diálogo de confirmação. */
 extern int be_sure(char *);
 /* Verifica se haverá estouro de memória ao capturar string do teclado. */
